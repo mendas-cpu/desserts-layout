@@ -90,6 +90,12 @@ function updateCartDisplay() {
 function updateQuantity(name, newQuantity) {
     if (newQuantity <= 0) {
         removeFromCart(name);
+        const dessertImages = document.querySelectorAll('.desserts-image');
+        dessertImages.forEach(img => {
+            if (img.alt === name) {
+                img.classList.remove('selected');
+            }
+        });
         return;
     }
     
@@ -137,15 +143,14 @@ function processOrder() {
     const confirmationPanel = document.querySelector('.confirmation-panel');
     if (confirmationPanel) {
         confirmationPanel.remove();
+        const dessertImages = document.querySelectorAll('.desserts-image');
+        dessertImages.forEach(img => {
+            img.classList.remove('selected');
+        });
     }
     startNewOrder();
 }
-function cancel(){
-    const confirmationPanel = document.querySelector('.confirmation-panel');
-    if (confirmationPanel){
-        confirmationPanel.remove();
-    }
-}
+
 document.addEventListener('click', (e) => {
     const confirmationPanel = document.querySelector('.confirmation-panel');
     if (confirmationPanel && e.target === confirmationPanel) {
