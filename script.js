@@ -42,7 +42,7 @@ function updateCartDisplay() {
     
     if (cart.length === 0) {
         emptyCartDiv.style.display = 'flex';
-        selectedItemsDiv.style.visibility = 'hidden';
+        selectedItemsDiv.innerHTML = '';
         return;
     }
     
