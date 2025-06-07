@@ -337,7 +337,10 @@ a{
     gap: 15px;
     justify-content: flex-end;
 }
-
+.selected{
+    border: 2px solid var(--color-red);
+    transition: border 0.06s ease-in-out;
+}
 .btn-cancel {
     background-color: var(--color-rose-1);
     color: var(--color-rose-6);

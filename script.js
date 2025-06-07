@@ -31,7 +31,12 @@ function addToCart(name, price) {
             quantity: 1
         });
     }
-    
+    const dessertImages = document.querySelectorAll('.desserts-image');
+    dessertImages.forEach(img => {
+        if (img.alt === name) {
+            img.classList.add('selected');
+        }
+    });
     updateCartDisplay();
 }
 
