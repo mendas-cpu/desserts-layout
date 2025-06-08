@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded",() =>{
             const dessert = document.createElement('div');
             dessert.classList.add('dessert');
             dessert.innerHTML = `
-                <img src="${element.image.desktop}" alt="${element.name}" class="desserts-image">
-                <button class="btn" onclick="addToCart('${element.name}', ${element.price})">Add to Cart<img src="./assets/images/icon-add-to-cart.svg" alt="cart" class="cart-icon"></button>
+                <img src="${element.image}" alt="${element.name}" class="desserts-image">
+                <button class="btn" onclick="addToCart('${element.name}', ${element.price}, '${element.image}')">Add to Cart<img src="./assets/images/icon-add-to-cart.svg" alt="cart" class="cart-icon"></button>
                 <div class="dessert-details">
                     <p class="dessert-category">${element.category}</p>
                     <h3 class="dessert-name">${element.name}</h3>
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded",() =>{
 
 let cart = [];
 
-function addToCart(name, price) {
+function addToCart(name, price, image) {
     const existingItem = cart.find(item => item.name === name);
     
     if (existingItem) {
@@ -28,6 +28,7 @@ function addToCart(name, price) {
         cart.push({
             name: name,
             price: price,
+            image: image,
             quantity: 1
         });
     }
@@ -121,9 +122,12 @@ function confirmOrder() {
             <div class="order-summary">
                 ${cart.map(item => `
                     <div class="summary-item">
-                        <span>${item.name}</span>
-                        <span>${item.quantity}x</span>
-                        <span>$${(item.price * item.quantity).toFixed(2)}</span>
+                        <img src="${item.image}" alt="${item.name}" class="summary-image">
+                        <div class="summary-details">
+                            <span>${item.name}</span>
+                            <span>${item.quantity}x</span>
+                            <span>$${(item.price * item.quantity).toFixed(2)}</span>
+                        </div>
                     </div>
                 `).join('')}
                 <div class="summary-total">
